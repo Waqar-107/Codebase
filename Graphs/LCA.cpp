@@ -45,30 +45,41 @@ typedef unsigned long long int ull;
 
 using namespace std;
 
-int height[N];
-int first[N], segTree[4 * N];
 vector<int> adj[N];
-
 class LCA
 {
 	int n;
-	vector<int> euler;
+	vector<int> euler, height, first, segTree;
 public:
-	
+
 	LCA(int n)
 	{
 		this->n = n;
 
-		euler.pb(-1);		 //in-order to make the vector one indexed
+		//we shall use 1-indexing
+		height.resize(n + 1);
+		first.resize(n + 1);
+
+		//in-order to make the vector one indexed
+		euler.pb(-1);	
+
 		dfs(1, -1, 1);
+
+		//in query, when the range is out of query-range we return 0th node, so setting its height=inf
+		height[0] = inf;	
+
+		//note: segTree can't be of size 4*N where N is the node number. As we are using the tree on\
+		euler traversal and there will be more than N nodes visited
 		
-		height[0] = inf;	 //in query, when the range is out of query-range we return 0th node, so setting its height=inf
-		build(1, 1, euler.size()-1);
+		int x = euler.size() + 10;	//extra 10 for safety
+		segTree.resize(x * 4);
+
+		build(1, 1, euler.size() - 1);
 	}
 
 	//determines the euler path and the height of nodes
 	//first[s] is for first occurance of node-s
-	void dfs(int s, int p,int h)
+	void dfs(int s, int p, int h)
 	{
 		height[s] = h;
 		first[s] = euler.size();
@@ -92,7 +103,7 @@ public:
 		}
 
 		int mid = (l + r) / 2;
-		
+
 		build(at * 2, l, mid);
 		build(at * 2 + 1, mid + 1, r);
 
@@ -128,7 +139,7 @@ public:
 
 		else
 			return y;
-	}	
+	}
 
 	int getLCA(int u, int v)
 	{
