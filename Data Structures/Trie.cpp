@@ -74,7 +74,7 @@ class trie
 			//now if this node do not belongs to any other word then we can return true so that its parent can delete it
 			//if it is the root, then it will not be affected as it will return true in deleteWord function where there will be none to free it
 			for (int i = 0; i < 26; i++) {
-				if (curr->next[s[i] - 'a'] != NULL) return false;
+				if (curr->next[i] != NULL) return false;
 			}
 
 			return true;
@@ -86,7 +86,7 @@ class trie
 		if (f) delete(curr->next[s[i] - 'a']);
 
 		for (int i = 0; i < 26; i++) {
-			if (curr->next[s[i] - 'a'] != NULL) return false;
+			if (curr->next[i] != NULL) return false;
 		}
 
 		return true;
