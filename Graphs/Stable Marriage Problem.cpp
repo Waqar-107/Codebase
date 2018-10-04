@@ -30,7 +30,7 @@ typedef unsigned long long int ull;
 
 using namespace std;
 
-//ranking[][] gives the rank of each woman in perspective of a man, rank[w][m]=i if womanPreffered[m][i]=w
+//ranking[][] gives the rank of each man in perspective of a woman, rank[w][m]=i if womanPreffered[m][i]=w
 //nxt[] tracks the next woman to propose
 
 int wife[N], husband[N], nxt[N];
