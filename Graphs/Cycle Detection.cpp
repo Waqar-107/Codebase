@@ -18,26 +18,28 @@ using namespace std;
 int color[N];
 vector<int> adj[N];
 
-void dfs(int s)
+void dfs(int s, int p)
 {
-    color[s]=grey;
+    color[s] = grey;
 
     for(int e : adj[s])
     {
-        if(color[e]==black)
+        if(e == p)continue;
+
+        if(color[e] == black)
             continue;
 
-        else if(color[e]==white)
-            dfs(e);
+        else if(color[e] == white)
+            dfs(e, s);
 
-        else if(color[e]==grey)
+        else if(color[e] == grey)
         {
-            printf("cycle detected");
-            return;
+            printf("cycle detected\n");
+            exit(0);
         }
     }
-    
-    color[s]=black;
+
+    color[s] = black;
 }
 
 int main()
@@ -59,7 +61,7 @@ int main()
         adj[v].push_back(u);
     }
 
-    dfs(1);
+    dfs(1, -1);
 
     return 0;
 }
