@@ -8,7 +8,7 @@ def floydWarshall(dist,n):
         for i in range(1,n):
             for j in range(1,n):
                 if dist[i][k]+dist[k][j]<dist[i][j]:
-                    dist[i][j]=dist[i][k]+dist[k][j]
+                    dist[i][j]=min(dist[i][k]+dist[k][j], dist[i][j])
 
     for i in range(1,n):
         for j in range(1,n):
