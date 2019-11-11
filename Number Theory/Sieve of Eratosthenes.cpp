@@ -13,7 +13,7 @@ vector<int> primes;
 
 void sieve_of_eratosthenes()
 {
-	int sq = sqrtl(N*1.0);
+	int sq = sqrtl(N * 1.0);
 
 	memset(status, 0, sizeof(status));
 
@@ -28,7 +28,7 @@ void sieve_of_eratosthenes()
 		if (!status[i])
 		{
 			//i is prime so its multipliers are not
-			for (int j = i*i; j < N; j += i + i)
+			for (int j = i * i; j < N; j += i + i)
 				status[j] = 1;
 		}
 	}
