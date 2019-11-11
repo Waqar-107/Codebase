@@ -28,7 +28,7 @@ using namespace std;
 ll compute_hash(string s)
 {
 	const int p = 31;
-	const int m = 1e9 + 9;
+	const ll m = 72727272727272727;
 
 	ll hash_value = 0;
 	ll p_pow = 1;
